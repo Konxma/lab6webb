@@ -1,0 +1,58 @@
+:root {
+  color-scheme: dark;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: #0d141a;
+  color: #e7edea;
+  --panel: #142029;
+  --surface: #101922;
+  --border: #32414a;
+  --muted: #aabcbf;
+  --green: #8ee3bd;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(1050px, calc(100% - 48px)); margin: 54px auto; }
+h1, h2, p, dl, dd { margin: 0; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.04em; }
+h2 { font-size: 1.05rem; }
+h2 small { color: var(--muted); margin-left: .35rem; font-weight: 500; }
+.page-header { border-bottom: 1px solid var(--border); padding-bottom: 22px; margin-bottom: 24px; }
+.panels { display: grid; grid-template-columns: minmax(230px, .7fr) minmax(0, 1.5fr); gap: 20px; align-items: start; }
+.panel { padding: 20px; border: 1px solid var(--border); background: var(--panel); border-radius: 12px; min-width: 0; }
+.panel-header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+.status { color: var(--muted); font-size: .8rem; }
+.status::before { content: ""; display: inline-block; width: .45rem; height: .45rem; border-radius: 50%; margin-right: .42rem; background: currentColor; }
+.status[data-state="connected"] { color: var(--green); }
+.status[data-state="error"] { color: #ffafab; }
+.metrics { display: grid; gap: 10px; }
+.metrics div { padding: 13px 15px; border: 1px solid var(--border); background: var(--surface); border-radius: 8px; }
+dt { color: var(--muted); font-size: .82rem; margin-bottom: 4px; }
+dd { color: var(--green); font: 1.65rem "IBM Plex Mono", Consolas, monospace; }
+dd small { font-size: .85rem; }
+#server-time { font-size: 1rem; padding-block: 3px; }
+form { display: grid; gap: 8px; }
+.connection { grid-template-columns: 1fr 1fr auto; align-items: end; }
+label { color: var(--muted); font-size: .84rem; min-width: 0; }
+label input { margin-top: 5px; }
+input, button { font: inherit; border-radius: 7px; padding: 10px; border: 1px solid var(--border); min-width: 0; min-height: 42px; }
+input { width: 100%; color: inherit; background: var(--surface); }
+input:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+button { background: var(--green); color: #10221d; font-size: .86rem; font-weight: 700; cursor: pointer; }
+button:disabled { opacity: .45; cursor: default; }
+.messages { height: 210px; overflow: auto; margin: 14px 0 9px; padding: 10px 12px; list-style: none; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); }
+.messages:empty::before { content: "Повідомлень поки немає"; font-size: .86rem; color: var(--muted); }
+.messages li { padding: 7px 0; overflow-wrap: anywhere; }
+.messages li + li { border-top: 1px solid var(--border); }
+.messages time { color: var(--muted); font-size: .75rem; margin-left: .55rem; }
+.messages strong { color: var(--green); font-size: .9rem; }
+.messages p { white-space: pre-wrap; margin-top: 3px; }
+.compose { grid-template-columns: 1fr auto; }
+@media (max-width: 760px) {
+  main { margin-top: 24px; width: calc(100% - 28px); }
+  .panels { grid-template-columns: 1fr; }
+}
+@media (max-width: 450px) {
+  .connection { grid-template-columns: 1fr 1fr; }
+  .connection button { grid-column: 1 / -1; }
+}

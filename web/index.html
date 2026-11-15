@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Пульт моніторингу</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <h1>Пульт моніторингу</h1>
+    </header>
+    <div class="panels">
+      <section class="panel" aria-labelledby="metrics-title">
+        <div class="panel-header">
+          <h2 id="metrics-title">Телеметрія <small>SSE</small></h2>
+          <p id="sse-status" class="status" role="status">Підключення…</p>
+        </div>
+        <dl class="metrics">
+          <div><dt>Активні горутини</dt><dd id="goroutines">—</dd></div>
+          <div><dt>Виділена пам’ять</dt><dd><span id="memory">—</span> <small>МіБ</small></dd></div>
+          <div><dt>Час сервера</dt><dd id="server-time">—</dd></div>
+        </dl>
+      </section>
+
+      <section class="panel" aria-labelledby="chat-title">
+        <div class="panel-header">
+          <h2 id="chat-title">Оперативний чат <small>WebSocket</small></h2>
+          <p id="ws-status" class="status" role="status">Відключено</p>
+        </div>
+        <form id="connection" class="connection">
+          <label>Кімната <input id="room" value="general" list="rooms" maxlength="32" pattern="[a-zA-Z0-9_\-]{1,32}" required title="1–32 латинські літери, цифри, дефіс або підкреслення"></label>
+          <datalist id="rooms"><option value="general"></option><option value="alerts"></option></datalist>
+          <label>Ім’я <input id="name" placeholder="Оператор" maxlength="48" autocomplete="off"></label>
+          <button id="connect">Підключитися</button>
+        </form>
+        <ol id="messages" class="messages" role="log" aria-label="Повідомлення чату"></ol>
+        <form id="message-form" class="compose">
+          <input id="message" aria-label="Текст повідомлення" placeholder="Повідомлення" maxlength="1000" required disabled>
+          <button id="send" disabled>Надіслати</button>
+        </form>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
